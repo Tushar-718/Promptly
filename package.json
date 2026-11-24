@@ -1,0 +1,8 @@
+{
+  "name": "promptly",
+  "private": true,
+  "packageManager": "pnpm@12.21.0",
+  "devDependencies": {
+    "typescript": "~6.0.3"
+  }
+}
