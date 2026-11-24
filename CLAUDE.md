@@ -40,8 +40,8 @@ Update this after every reviewed step.
 
 - **Phase:** 0 — Foundation & Auth
 - **Checklist item:** pnpm workspace, `tsconfig.base.json`, `packages/shared`
-- **Completed steps:** Step 1 root `package.json`; Step 2 `pnpm-workspace.yaml`; Step 3 `packages/shared/package.json`; Step 4 `apps/api` + `apps/web` `package.json`; Step 5 `.gitignore` + `git init` (no commits yet); Step 6 TypeScript `~6.0.3` at the root; Step 7 `tsconfig.base.json`
-- **Current step:** Step 8 — first git commit, not done yet
-- **Next:** Step 9 — start the API: install Express in `apps/api`
+- **Completed steps:** Step 1 root `package.json`; Step 2 `pnpm-workspace.yaml`; Step 3 `packages/shared/package.json`; Step 4 `apps/api` + `apps/web` `package.json`; Step 5 `.gitignore` + `git init`; Step 6 TypeScript `~6.0.3` at the root; Step 7 `tsconfig.base.json`; Step 8 first commit (pushed to `origin/main`); Step 9 Express 5 in `apps/api`; Step 10 `apps/api/src/server.ts` with `GET /health` + `"type": "module"`; Step 11 `apps/api/tsconfig.json` + `@types/express` (type check is clean)
+- **Current step:** Step 12 — `dev` script in `apps/api` (`node --watch src/server.ts`) and second commit, not done yet
+- **Next:** Step 13 — move the port into an environment variable (`process.env`, `.env`)
 - **Deferred:** `packages/shared/tsconfig.json` and shared code wait until there is something to share (first Zod schema, at register), so that checklist item stays unticked until then
-- **Notes:** TypeScript is pinned to `~6.0.3` on purpose (typescript-eslint 8.74.0 supports only `<6.1.0`; TS 7.0 has no stable JS API). Next.js 16 renamed `middleware.ts` to `proxy.ts`: decide when we reach it.
+- **Notes:** TypeScript is pinned to `~6.0.3` on purpose (typescript-eslint 8.74.0 supports only `<6.1.0`; TS 7.0 has no stable JS API). Next.js 16 renamed `middleware.ts` to `proxy.ts`: decide when we reach it. Express 5 forwards async errors by itself, so §5.3 `lib/async-handler.ts` is probably not needed: decide when we reach error handling. `@types/node` waits until we use `process.env`; install the major that matches Node (24), not the latest. The dev script uses `node --watch` for now; switch to `tsx watch` (§12.1) when we split files, because Node does not resolve `./x.js` imports to `.ts` files.
