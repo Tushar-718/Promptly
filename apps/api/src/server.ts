@@ -1,11 +1,12 @@
 import express from "express";
 
 const app = express();
+const port = Number(process.env.PORT ?? 4000);
 
 app.get("/health", (req, res) => {
   res.json({ ok: true });
 });
 
-app.listen(4000, () => {
-  console.log("API listening on http://localhost:4000");
+app.listen(port, () => {
+  console.log(`API listening on http://localhost:${port}`);
 });
