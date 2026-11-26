@@ -4,6 +4,7 @@ import { requestId } from "./middleware/request-id.js";
 import { httpLogger } from "./middleware/http-logger.js";
 import { notFound } from "./middleware/not-found.js";
 import { errorHandler } from "./middleware/error-handler.js";
+import { healthRouter } from "./modules/health/health.routes.js";
 
 export const app = express();
 
@@ -13,12 +14,7 @@ app.use(httpLogger);
 app.use(express.json());
 
 // Health check
-app.get("/health", (_req, res) => {
-  res.status(200).json({
-    status: "ok",
-    message: "API is healthy",
-  });
-});
+app.use("/api/v1/health", healthRouter);
 
 app.use(notFound);
 app.use(errorHandler);
