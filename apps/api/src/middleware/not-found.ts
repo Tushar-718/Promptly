@@ -1,12 +1,6 @@
-import type { Request, Response } from "express";
+import type { Request } from "express";
+import { AppError } from "../lib/errors.js";
 
-export function notFound(req: Request, res: Response) {
-  res.status(404).json({
-    error: {
-      code: "NOT_FOUND",
-      message: `Route ${req.method} ${req.path} not found`,
-      requestId: req.id,
-      details: {},
-    },
-  });
+export function notFound(req: Request) {
+  throw new AppError(404, "NOT_FOUND", `Route ${req.method} ${req.path} not found`);
 }
