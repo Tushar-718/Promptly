@@ -824,7 +824,7 @@ Response headers: `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Res
 - [ ] pnpm workspace, `tsconfig.base.json`, `packages/shared`
 - [ ] `docker-compose.yml` (postgres+pgvector, redis, api, worker)
 - [ ] Express skeleton: env validation, pino + request ID, error handler, `/health`
-- [ ] Drizzle setup, `users`, `oauth_accounts`, `refresh_tokens` migrations
+- [x] Drizzle setup, `users`, `oauth_accounts`, `refresh_tokens` migrations
 - [ ] Register / login / me / logout
 - [ ] Refresh rotation + reuse detection + logout-all
 - [ ] Google OAuth + account linking
