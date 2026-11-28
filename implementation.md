@@ -64,7 +64,7 @@ Detailed checklists are in §13.
 | Chat model | Gemini **Flash / Flash-Lite** family, set by env `LLM_MODEL` | Free-tier friendly. **Copy the exact model ID from Google AI Studio**: IDs change often. |
 | Embedding model | **`gemini-embedding-001`**, `outputDimensionality = 768` | 3072 is the default, but 768 saves storage and fits pgvector's HNSW limit (≤ 2000 dims). **Locked**: changing it means re-embedding everything. |
 | Password hashing | **bcryptjs** (cost 12) | Pure JS: no native build problems inside Docker |
-| Auth | JWT access token (15 min) + opaque refresh token (7 days, rotated, hashed in Postgres, reuse detection) in **httpOnly cookies** | Practice; secure for the web |
+| Auth | JWT access token (15 min) + opaque refresh token (7 days, rotated, hashed in Postgres, reuse detection) in **httpOnly cookies**; JWT library `jsonwebtoken` | Practice; secure for the web |
 | OAuth | Google OAuth 2.0 authorization-code flow, implemented by hand (no auth library) | Learning |
 | RBAC | Roles `user` and `admin` | Small admin page |
 | PDF text extraction | **`unpdf`** (per-page text) | Maintained, serverless-friendly; per-page text enables page citations |
@@ -261,6 +261,8 @@ apps/api/
 │  ├─ app.ts                        [P0] builds the express app: middleware order + routes
 │  ├─ server.ts                     [P0] starts HTTP; starts workers if RUN_WORKER_IN_PROCESS
 │  ├─ worker.ts                     [P3] standalone worker entry (docker-compose "worker")
+│  ├─ routes/
+│  │  └─ index.ts                   [P0] apiRouter: mounts every module router under /api/v1
 │  ├─ config/
 │  │  └─ env.ts                     [P0] Zod-validated env, crash on invalid
 │  ├─ types/
@@ -920,6 +922,7 @@ Add a row whenever a decision in §3 changes.
 | 2026-11-24 | Refresh tokens: opaque, hashed, rotated, reuse detection, in Postgres | Practice + security |
 | 2026-11-24 | No local LLM (Ollama) | Low RAM |
 | 2026-11-28 | Release order: basic auth → Phase 1 → refresh/logout/rate limits → simple UI → deploy (target 2026-12-05); Google OAuth, logout-all and RBAC move after launch | Get a working AI product live early |
+| 2026-11-28 | JWT library: `jsonwebtoken` (+ `@types/jsonwebtoken`) | Developer's choice; widely used |
 
 ---
 
