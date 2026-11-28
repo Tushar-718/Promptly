@@ -919,6 +919,7 @@ Add a row whenever a decision in §3 changes.
 | 2026-11-24 | Translation EN ↔ HI only, source auto-detected | Scope |
 | 2026-11-24 | Refresh tokens: opaque, hashed, rotated, reuse detection, in Postgres | Practice + security |
 | 2026-11-24 | No local LLM (Ollama) | Low RAM |
+| 2026-11-28 | Release order: basic auth → Phase 1 → refresh/logout/rate limits → simple UI → deploy (target 2026-12-05); Google OAuth, logout-all and RBAC move after launch | Get a working AI product live early |
 
 ---
 
